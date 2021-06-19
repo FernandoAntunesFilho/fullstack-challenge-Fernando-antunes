@@ -22,6 +22,16 @@ module.exports = {
           key: 'id',
         },
       },
+      escolaId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Escolas',
+          key: 'id',
+        },
+      },
     });
   },
 
