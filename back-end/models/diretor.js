@@ -1,5 +1,5 @@
 const diretorModel = (sequelize, DataTypes) => {
-  const Diretor = sequelize.define('Diretor', {
+  const Diretor = sequelize.define('Diretore', {
     nome: DataTypes.STRING,
   },
   { timestamps: false });
@@ -7,4 +7,4 @@ const diretorModel = (sequelize, DataTypes) => {
   return Diretor;
 };
 
-module.exports = userModel;
+module.exports = diretorModel;

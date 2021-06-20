@@ -7,4 +7,4 @@ const professorModel = (sequelize, DataTypes) => {
   return Professor;
 };
 
-module.exports = userModel;
+module.exports = professorModel;

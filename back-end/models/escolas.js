@@ -6,10 +6,10 @@ const escolaModel = (sequelize, DataTypes) => {
   { timestamps: false });
 
   Escola.associate = (models) => {
-    Escola.belongsTo(models.Diretor, { as: 'diretor', foreignKey: 'diretorId' });
+    Escola.belongsTo(models.Diretore, { as: 'diretor', foreignKey: 'diretorId' });
   };
 
   return Escola;
 };
 
-module.exports = postModel;
+module.exports = escolaModel;

@@ -15,4 +15,4 @@ const alunoModel = (sequelize, DataTypes) => {
   return Aluno;
 };
 
-module.exports = postModel;
+module.exports = alunoModel;

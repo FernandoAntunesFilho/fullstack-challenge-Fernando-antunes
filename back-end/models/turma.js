@@ -14,4 +14,4 @@ const turmaModel = (sequelize, DataTypes) => {
   return Turma;
 };
 
-module.exports = postModel;
+module.exports = turmaModel;
