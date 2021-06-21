@@ -15,7 +15,7 @@ const getTurmasByEscola = async (escolaId) => {
     });
     return turmas;
   }
-  return { message: 'Id da Escola é obrigatório', code: 400 }
+  return { message: 'Id da Escola não foi informado', code: 400 }
 };
 
 module.exports = {
