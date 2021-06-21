@@ -7,7 +7,6 @@ const getAlunosByTurma = async (turmaId) => {
       turmaId,
     },
     include: [
-      // { model: Turma, as: 'turma' },
       {
         model: Turma, as: 'turma',
         attributes: { exclude: ['escolaId', 'professorId'] },
@@ -18,6 +17,12 @@ const getAlunosByTurma = async (turmaId) => {
   return alunos;
 };
 
+const getAlunoById = async (alunoId) => {
+  const aluno = Aluno.findByPk(alunoId);
+  return aluno;
+};
+
 module.exports = {
   getAlunosByTurma,
+  getAlunoById,
 };
