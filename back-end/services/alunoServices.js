@@ -18,12 +18,18 @@ const getAlunosByTurma = async (turmaId) => {
     });
     return alunos;
   }
-  return { message: 'Id da Turma não foi informado', code: 400 }
+  return { message: 'Id da Turma não foi informado', code: 400 };
 };
 
 const getAlunoById = async (alunoId) => {
-  const aluno = Aluno.findByPk(alunoId);
-  return aluno;
+  if (alunoValidations.alunoIdIsValid(alunoId)) {
+    const aluno = await Aluno.findByPk(alunoId);
+    if (alunoValidations.alunoIsNull(aluno)) {
+      return { message: 'Aluno não foi encontrado com o Id informado', code: 404 }
+    }
+    return aluno;
+  }
+  return { message: 'Id do Aluno não foi informado', code: 400 };
 };
 
 module.exports = {
