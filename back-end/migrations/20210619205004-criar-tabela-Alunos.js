@@ -21,6 +21,9 @@ module.exports = {
       celular: {
         type: Sequelize.STRING,
       },
+      obs: {
+        type: Sequelize.TEXT,
+      },
       turmaId: {
         type: Sequelize.INTEGER,
         allowNull: false,

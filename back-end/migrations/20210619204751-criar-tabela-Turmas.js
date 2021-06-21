@@ -12,6 +12,9 @@ module.exports = {
       nome: {
         type: Sequelize.STRING,
       },
+      obs: {
+        type: Sequelize.TEXT,
+      },
       professorId: {
         type: Sequelize.INTEGER,
         allowNull: false,

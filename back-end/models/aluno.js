@@ -4,6 +4,7 @@ const alunoModel = (sequelize, DataTypes) => {
     responsavel: DataTypes.STRING,
     email: DataTypes.STRING,
     celular: DataTypes.STRING,
+    obs: DataTypes.TEXT,
     turmaId: DataTypes.INTEGER,
   },
   { timestamps: false });

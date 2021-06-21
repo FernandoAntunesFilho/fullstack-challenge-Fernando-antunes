@@ -7,6 +7,7 @@ module.exports = {
         responsavel: 'Paisley Harding',
         email: 'paisley-harding@scholl.com',
         celular: '3182906475',
+        obs: 'O aluno já entregou todos os trabalhos',
         turmaId: 3,
       },
       {

@@ -1,6 +1,7 @@
 const turmaModel = (sequelize, DataTypes) => {
   const Turma = sequelize.define('Turma', {
     nome: DataTypes.STRING,
+    obs: DataTypes.TEXT,
     professorId: DataTypes.INTEGER,
     escolaId: DataTypes.INTEGER,
   },

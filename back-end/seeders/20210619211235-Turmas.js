@@ -10,6 +10,7 @@ module.exports = {
       {
         id: 2,
         nome: '6 Ano',
+        obs: 'Turma em semana de provas',
         professorId: 3,
         escolaId: 1,
       },
