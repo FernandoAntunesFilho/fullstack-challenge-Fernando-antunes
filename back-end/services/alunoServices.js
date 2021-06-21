@@ -4,14 +4,14 @@ const alunoValidations = require('./alunoValidations');
 const getAlunosByTurma = async (turmaId) => {
   if (alunoValidations.turmaIdIsValid(turmaId)) {
     const alunos = Aluno.findAll({
-      attributes: { exclude: ['turmaId'] },
+      attributes: { exclude: ['turmaId', 'responsavel', 'email', 'celular', 'obs'] },
       where: {
         turmaId,
       },
       include: [
         {
           model: Turma, as: 'turma',
-          attributes: { exclude: ['escolaId', 'professorId'] },
+          attributes: { exclude: ['escolaId', 'professorId', 'obs'] },
           include: [{ model: Professore, as: 'professor' }]
         },
       ],
