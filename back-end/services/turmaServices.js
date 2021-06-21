@@ -1,17 +1,21 @@
 const { Turma, Professore, Escola } = require('../models');
+const turmaValidations = require('./turmaValidations');
 
 const getTurmasByEscola = async (escolaId) => {
-  const turmas = Turma.findAll({
-    attributes: { exclude: ['professorId', 'escolaId'] },
-    where: {
-      escolaId,
-    },
-    include: [
-      { model: Professore, as: 'professor' },
-      { model: Escola, as: 'escola', attributes: { exclude: ['diretorId'] }, },
-    ],
-  });
-  return turmas;
+  if (turmaValidations.escolaIdIsValid(escolaId)) {
+    const turmas = Turma.findAll({
+      attributes: { exclude: ['professorId', 'escolaId'] },
+      where: {
+        escolaId,
+      },
+      include: [
+        { model: Professore, as: 'professor' },
+        { model: Escola, as: 'escola', attributes: { exclude: ['diretorId'] }, },
+      ],
+    });
+    return turmas;
+  }
+  return { message: 'Id da Escola é obrigatório' }
 };
 
 module.exports = {
