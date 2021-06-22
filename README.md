@@ -1,83 +1,255 @@
 # Plataforma A+ - Desafio FullStack
 
-Estamos à procura de full-stack Developers para fazerem parte do nosso time e contribuírem com a transformação digital das escolas.
+Aplicação CRUD com escopo para Escolas
 
-## Quem somos
+## Banco de dados
 
-A Plataforma A+ é uma EdTech que une um grupo de engenheiros de softwares, designers, analistas e professores apaixonados em gerar inovação para transformar e potencializar a capacidade de aprendizagem do ser humano.
-
-Siga-nos no [Linkedin](https://www.linkedin.com/company/plataformaamais).
-
-Acompanhe nossas vagas no [Linkedin](https://www.linkedin.com/company/plataformaamais/jobs/).
-
----
+Utilizei o bando de dados MySQL.
+As seguintes tabelas fazem parte do BD:
+* Diretores
+* Escolas
+* Professores
+* Turmas
+* Alunos
 
 ## Desafio
 
-Desenvolver uma aplicação WEB ou APP, para controlar Alunos e Professores em suas Turmas, referentes às séries do Ensino Fundamental, em uma Escola Pública.
+Desenvolvi o Back-End utilizando:
+* Node.js
+* Express
+* Sequelize ORM
+* Variáveis de ambiente
 
-- A aplicação deve apresentar uma lista de Escolas Públicas:
-  - Deve permitir adicionar, modificar e excluir Escolas.
-  - Cada Escola deve possuir um Diretor responsável.
-- As Turmas devem ser disponibilizadas ao acessar detalhes de uma Escola:
-  - Deve permitir adicionar, modificar e excluir Turmas.
-  - Cada Turma possui um Professor associado a ela.
-    - Um Professor poderá estar associado a mais de uma Turma.
-      - Deve permitir que o Diretor possa adicionar e excluir Professores em uma Turma.
-  - Ao entrar nos detalhes da Turma, os alunos e professores relacionados devem ser exibidos.
-    - Alunos devem ser adicionados ou excluídos das Turmas.
-- Os Alunos possuem informações mínimas que devem estar contidas em seus cadastros, como:
-  - Nome do Aluno
-  - Nomes dos Responsáveis
-  - Contatos
-- Os Professores devem ser capazes de adicionar observações sobre a Turma e sobre determinado Aluno.
-- A solução deve possibilitar buscar com base em alguma informação, de escolha livre, contida nas entidades.
+### Endpoints
 
-### Recomendações
+Os seguintes endpoints estão implementados:
+* GET `/escolas`
+  * Responsável por retornar a lista de todas as escolas cadastradas.
+```json
+[
+    {
+        "id": 1,
+        "nome": "Escola Fairydust Raymond",
+        "diretor": {
+            "id": 2,
+            "nome": "Felix Sawyer"
+        }
+    },
+    {
+        "id": 2,
+        "nome": "Escola Rachel Ball",
+        "diretor": {
+            "id": 1,
+            "nome": "Judy Acevedo"
+        }
+    }
+]
+```
+* POST `/addescola`
+  * Responsável por criar uma nova escola no banco de dados.
+```json
+{
+    "id": 3,
+    "nome": "Escola Nova",
+    "diretorId": 2
+}
+```
+* PUT `/escola`
+  * Responsável por editar os dados de uma escola que já esteja cadastrada no banco de dados.
+```json
+{
+    "id": 3,
+    "nome": "Escola Editada",
+    "diretorId": 1
+}
+```
+* DELETE `/escola`
+  * Responsável por efetuar a exclusão de uma escola do cadastro do banco de dados.
+```
+Response Status: 204 No Content
+```
+---
+* POST `/turmasescola`
+  * Responsável por gerar uma lista de todas as turmas de uma determinada escola com seus respectivos professores e o nome da escola a qual a turma pertence.
+```json
+[
+    {
+        "id": 1,
+        "nome": "5 Ano",
+        "obs": null,
+        "professor": {
+            "id": 2,
+            "nome": "prof Karan Hendricks"
+        },
+        "escola": {
+            "id": 1,
+            "nome": "Escola Fairydust Raymond"
+        }
+    },
+    {
+        "id": 2,
+        "nome": "6 Ano",
+        "obs": "Turma em semana de provas",
+        "professor": {
+            "id": 3,
+            "nome": "prof Dave Seymour"
+        },
+        "escola": {
+            "id": 1,
+            "nome": "Escola Fairydust Raymond"
+        }
+    }
+]
+```
+---
+* POST `/alunosturma`
+  * Responsável por gerar uma lista com todos os alunos que pertentem a uma determinada turma, detalhando o nome da turma e nome do professor.
+```json
+[
+    {
+        "id": 3,
+        "nome": "Tobias Marsden",
+        "turma": {
+            "id": 2,
+            "nome": "6 Ano",
+            "professor": {
+                "id": 3,
+                "nome": "prof Dave Seymour"
+            }
+        }
+    },
+    {
+        "id": 4,
+        "nome": "Blaine Pearson",
+        "turma": {
+            "id": 2,
+            "nome": "6 Ano",
+            "professor": {
+                "id": 3,
+                "nome": "prof Dave Seymour"
+            }
+        }
+    }
+]
+```
+* POST `/alunoid`
+  * Responsável por retornar os dados de determinado aluno buscando pelo ID.
+```json
+{
+    "id": 1,
+    "nome": "Khadeejah Mack",
+    "responsavel": "Paisley Harding",
+    "email": "paisley-harding@scholl.com",
+    "celular": "3182906475",
+    "obs": "O aluno já entregou todos os trabalhos",
+    "turmaId": 3
+}
+```
+* POST `/alunosterm`
+  * Responsável por retornar uma lista de todos os alunos cujo termo propurado conste em algum dos campos de texto de seu cadastro.
 
-- Módulos de frontend e backend devem ser desenvolvidos de forma separada.
-- O backend pode ser feito utilizando uma das seguintes linguagens: Javascript, Typescript, Python ou C#, nesta ordem de preferência.
-- O frontend poderá ser desenvolvido com JavaScript, Typescript, Dart `(No caso de um app Flutter como frontend)` ou qualquer framework/ferramenta que suporte ou utilize essas tecnologias.
-- Para camada de persistência, utilize NoSQL como o MongoDB ou um SGBD relacional como o PostgreSQL. A modelagem de documentos ou entidades é livre e de acordo com o escolhido e utilizado pela sua solução.
-- O que for submetido, mesmo que incompleto, deve funcionar.
+Busca pelo termo "Todos"
+```json
+[
+    {
+        "id": 1,
+        "nome": "Khadeejah Mack",
+        "responsavel": "Paisley Harding",
+        "email": "paisley-harding@scholl.com",
+        "celular": "3182906475",
+        "obs": "O aluno já entregou todos os trabalhos",
+        "turmaId": 3
+    }
+]
+```
+Busca pelo termo "Davi"
+```json
+[
+    {
+        "id": 5,
+        "nome": "Timur Davison",
+        "responsavel": "Stewart Riddle",
+        "email": "timur-davison@scholl.com",
+        "celular": "7804695231",
+        "obs": null,
+        "turmaId": 1
+    }
+]
+```
+Busca pela letra "D"
+```json
+[
+    {
+        "id": 1,
+        "nome": "Khadeejah Mack",
+        "responsavel": "Paisley Harding",
+        "email": "paisley-harding@scholl.com",
+        "celular": "3182906475",
+        "obs": "O aluno já entregou todos os trabalhos",
+        "turmaId": 3
+    },
+    {
+        "id": 2,
+        "nome": "Eddie Huang",
+        "responsavel": "Jorja Hood",
+        "email": "jorja-hood@scholl.com",
+        "celular": "2053879416",
+        "obs": null,
+        "turmaId": 3
+    },
+    {
+        "id": 3,
+        "nome": "Tobias Marsden",
+        "responsavel": "Sheikh Webber",
+        "email": "tobias-marsden@scholl.com",
+        "celular": "9023168457",
+        "obs": null,
+        "turmaId": 2
+    },
+    {
+        "id": 5,
+        "nome": "Timur Davison",
+        "responsavel": "Stewart Riddle",
+        "email": "timur-davison@scholl.com",
+        "celular": "7804695231",
+        "obs": null,
+        "turmaId": 1
+    }
+]
+```
 
 ### Instruções
 
-1. Faça o **`Fork`** deste repositório;
-2. Nomeie o projeto da seguinte maneira: **fullstack-challenge-`nome-sobrenome`**;
-3. Ao concluir o desafio, publique em seu próprio repositório, **com acesso `público` habilitado** e envie o link para os e-mails <alex.souza@plataformaamais.com.br> e/ou <bruno.souza@plataformaamais.com.br>.
+1. Clone o repositório em seu computador;
+2. Entre no diretório `/fullstack-challenge-Fernando-antunes/back-end`;
+3. Execute o comando `npm install`;
+4. Edite o arquivo `.env`:
+```
+MYSQL_USER= usuário do banco de dados MySQL
+MYSQL_PASSWORD= senha de acesso ao banco de dados MySQL
+HOSTNAME= endereço de acesso ao banco de dados
 
-### Considerações gerais
+PORT= porta em que o servidor back-end deverá rodar
+```
+5. Como estou utilizando o Sequelize ORM é necessário executar estes comandos para criar o Banco de dados, tabelas e as popular:
+  * `npx sequelize db:create` - Para criar o banco de dados.
+  * `npx sequelize db:migrate:all` - Para criar as tabelas.
+  * `npx sequelize db:seed:all` - Para popular as tabelas com informações básicas.
+5. No terminal, execute o comando `npm start`;
+6. Agora que o servidor Back-End está no ar, utilize alguma ferramenta de requisições de API's como o Postman ou Insomnia para testar as rotas.
 
-- Utilize as melhores práticas que você conhece.
-- Utilize ferramentas visuais como desenhos, fluxos e diagramas para explicar sua solução, sem muita formalidade, apenas para passar uma idéia geral e/ou explicar pontos interessantes.
-- As opções de tecnologias são baseadas no que utilizamos para desenvolver soluções hoje. Porém, na Plataforma A+, o foco no resultado é muito valorizado, por isso não se sinta limitado e caso tenha implementações fora dos opcionais oferecidos de tecnologias e ferramentas, foque em responder o desafio com o que conhece.
-- Caso não termine o desafio, utilizaremos o que entregou como base para a conversa.
-- Lembre-se que iremos analisar seu desafio e terá a chance de explicar sua estratégia para pessoas de tecnologia.
-- Teremos uma conversa agradável e objetiva, onde falaremos sobre tech, com base neste desafio.
+### Considerações finais
 
-### Critérios de avaliação
+- No prazo estipulado foi possivel desenvolver a aplicação back-end de forma parcial, porém, com os principais end-points de consulta e o CRUD da tabela Escolas.
+- Desenvolvi a aplicação usando as melhores práticas que conheço nesse momento com REST e SOLID.
+Me comprometo, caso seja dado mais tempo, a desenvolver a solução completa. Front + Back.
+- Fico aberto para conversar sobre o código, receber feed-back e responder dúvidas que venham a surgir.
 
-- Organização.
-- Manutenibilidade.
-- Legibilidade, limpeza, clareza do código​.
-- Resultado funcional.
-- Flexibilidade da aplicação:​ Parametrização, agnóstico ao ambiente, escalabilidade, etc.
-- Segurança​.
-- Documentação objetiva.
-- Cobertura de código.
-- Escolhas técnicas e suas justificativas.
-- Histórico de commits​.
+---
 
-### Diferenciais
-
-- Utilizar layout responsivo.
-- Boas práticas de UX na solução.
-- Backend dockerizado.
-- Documentação.
-- Testes unitários e de integração.
-- Uso de TDD.
-- Uso de patterns.
-- Abordagem para desenvolvimento de software.
-
-**Boa sorte!**
+## Fernando Antunes Filho
+### Full-Stack Developer
+WhatsApp (15) 997748440
+email fernando.antunes1@gmail.com</br>
+[Linkedin](https://www.linkedin.com/in/fernandoantunesfilho/)</br>
+[GitHub](https://github.com/FernandoAntunesFilho)

@@ -7,7 +7,7 @@ const getEscolas = async (req, res) => {
 
 const addEscola = async (req, res) => {
   const dadosNovaEscola = req.body;
-  const result = await escolaServices.addEscolas(dadosNovaEscola);
+  const result = await escolaServices.addEscola(dadosNovaEscola);
   if (result.message) {
     return res.status(result.code).json({ message: result.message });
   }
