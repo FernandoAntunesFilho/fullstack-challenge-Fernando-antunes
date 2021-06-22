@@ -23,8 +23,18 @@ const editEscola = async (req, res) => {
   res.status(200).json(result);
 };
 
+const deleteEscola = async (req, res) => {
+  const { id } = req.body;
+  const result = await escolaServices.deleteEscola(id);
+  if (result.message) {
+    return res.status(result.code).json({ message: result.message });
+  }
+  res.status(204).json();
+}
+
 module.exports = {
   getEscolas,
   addEscola,
   editEscola,
+  deleteEscola,
 }

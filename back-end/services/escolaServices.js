@@ -26,14 +26,27 @@ const addEscola = async (dadosNovaEscola) => {
 };
 
 const editEscola = async (dadosEscola) => {
-  // ENCONTRAR UMA FORMA DE NÃO EDITAR O ID DO DIRETOR CASO NÃO EXISTA NA TABELA DIRETORES
   const { id, nome, diretorId } = dadosEscola;
   if (await escolaValidations.escolaIdIsValid(id)) {
-    const escolaEditada = await Escola.update(
+    await Escola.update(
       { nome, diretorId },
       { where: { id } }
       );
+    
+    const escolaEditada = await Escola.findByPk(id);
     return escolaEditada;
+  }
+  return { message: 'Escola informada não existe', code: 404 };
+};
+
+const deleteEscola = async (id) => {
+  if (await escolaValidations.escolaIdIsValid(id)) {
+    const escola = await Escola.destroy({
+      where: {
+        id,
+      },
+    });
+    return escola;
   }
   return { message: 'Escola informada não existe', code: 404 }
 };
@@ -42,4 +55,5 @@ module.exports = {
   getEscolas,
   addEscola,
   editEscola,
+  deleteEscola,
 }

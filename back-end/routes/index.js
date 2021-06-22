@@ -8,6 +8,7 @@ const router = express.Router();
 router.get('/escolas', escolaControllers.getEscolas);
 router.post('/addescola', escolaControllers.addEscola);
 router.put('/escola', escolaControllers.editEscola);
+router.delete('/escola', escolaControllers.deleteEscola);
 
 router.post('/turmasescola', turmaControllers.getTurmasByEscola);
 
