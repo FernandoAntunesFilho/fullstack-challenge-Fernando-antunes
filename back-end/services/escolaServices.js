@@ -14,7 +14,8 @@ const getEscolas = async () => {
 const addEscolas = async (dadosNovaEscola) => {
   const { nome, diretorId } = dadosNovaEscola;
     
-  if (await escolaValidations.diretorIdIsValid(diretorId)) {
+  if (await escolaValidations.diretorIdIsValid(diretorId)
+  && escolaValidations.nomeEscolaInformado(nome)) {
     const novaEscola = await Escola.create({
       nome,
       diretorId,
