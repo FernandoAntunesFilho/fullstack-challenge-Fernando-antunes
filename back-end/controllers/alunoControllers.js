@@ -18,7 +18,14 @@ const getAlunoById = async (req, res) => {
   res.status(200).json(result);
 };
 
+const getAlunosByTerm = async (req, res) => {
+  const { termo } = req.body;
+  const result = await alunoServices.getAlunosByTerm(termo);
+  res.status(200).json(result);
+};
+
 module.exports = {
   getAlunosByTurma,
   getAlunoById,
+  getAlunosByTerm,
 }

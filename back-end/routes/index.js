@@ -11,5 +11,6 @@ router.post('/turmasescola', turmaControllers.getTurmasByEscola);
 
 router.post('/alunosturma', alunoControllers.getAlunosByTurma);
 router.post('/alunoid', alunoControllers.getAlunoById);
+router.post('/alunosterm', alunoControllers.getAlunosByTerm);
 
 module.exports = router;

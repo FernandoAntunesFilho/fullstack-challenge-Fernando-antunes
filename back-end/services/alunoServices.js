@@ -1,4 +1,4 @@
-const { Aluno, Turma, Professore } = require('../models');
+const { Aluno, Turma, Professore, sequelize } = require('../models');
 const alunoValidations = require('./alunoValidations');
 
 const getAlunosByTurma = async (turmaId) => {
@@ -32,7 +32,25 @@ const getAlunoById = async (alunoId) => {
   return { message: 'Id do Aluno não foi informado', code: 400 };
 };
 
+const getAlunosByTerm = async (termo) => {
+  const Sequelize = require('sequelize');
+  const { Op } = Sequelize;
+
+  const posts = await Aluno.findAll({
+    where: { [Op.or]: [
+      { nome: { [Op.like]: `%${termo}%` } },
+      { responsavel: { [Op.like]: `%${termo}%` } },
+      { email: { [Op.like]: `%${termo}%` } },
+      { celular: { [Op.like]: `%${termo}%` } },
+      { obs: { [Op.like]: `%${termo}%` } },
+    ],
+    },
+  });
+  return posts;
+};
+
 module.exports = {
   getAlunosByTurma,
   getAlunoById,
+  getAlunosByTerm,
 };
