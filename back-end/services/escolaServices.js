@@ -10,6 +10,16 @@ const getEscolas = async () => {
   return escolas;
 };
 
+const addEscolas = async (dadosNovaEscola) => {
+  const { nome, diretorId } = dadosNovaEscola;
+  const novaEscola = await Escola.create({
+    nome,
+    diretorId,
+  });
+  return novaEscola;
+};
+
 module.exports = {
   getEscolas,
+  addEscolas,
 }

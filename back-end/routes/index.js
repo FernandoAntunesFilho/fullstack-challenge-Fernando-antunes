@@ -6,6 +6,7 @@ const alunoControllers = require('../controllers/alunoControllers');
 const router = express.Router();
 
 router.get('/escolas', escolaControllers.getEscolas);
+router.post('/addescola', escolaControllers.addEscolas);
 
 router.post('/turmasescola', turmaControllers.getTurmasByEscola);
 
