@@ -242,7 +242,7 @@ PORT= porta em que o servidor back-end deverá rodar
 
 - No prazo estipulado foi possivel desenvolver a aplicação back-end de forma parcial, porém, com os principais end-points de consulta e o CRUD da tabela Escolas.
 - Desenvolvi a aplicação usando as melhores práticas que conheço nesse momento com REST e SOLID.
-Me comprometo, caso seja dado mais tempo, a desenvolver a solução completa. Front + Back.
+- Me comprometo, caso seja dado mais tempo, a desenvolver a solução completa. Front + Back.
 - Fico aberto para conversar sobre o código, receber feed-back e responder dúvidas que venham a surgir.
 
 ---
