@@ -1,4 +1,5 @@
 const { Escola, Diretore } = require('../models');
+const escolaValidations = require('./escolaValidations');
 
 const getEscolas = async () => {
   const escolas = await Escola.findAll({
@@ -12,11 +13,15 @@ const getEscolas = async () => {
 
 const addEscolas = async (dadosNovaEscola) => {
   const { nome, diretorId } = dadosNovaEscola;
-  const novaEscola = await Escola.create({
-    nome,
-    diretorId,
-  });
-  return novaEscola;
+    
+  if (await escolaValidations.diretorIdIsValid(diretorId)) {
+    const novaEscola = await Escola.create({
+      nome,
+      diretorId,
+    });
+    return novaEscola;
+  }
+  return { message: 'Dados inválidos para criar nova Escola', code: 400 }
 };
 
 module.exports = {
