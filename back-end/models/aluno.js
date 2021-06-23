@@ -1,16 +1,19 @@
 const alunoModel = (sequelize, DataTypes) => {
-  const Aluno = sequelize.define('Aluno', {
-    nome: DataTypes.STRING,
-    responsavel: DataTypes.STRING,
-    email: DataTypes.STRING,
-    celular: DataTypes.STRING,
-    obs: DataTypes.TEXT,
-    turmaId: DataTypes.INTEGER,
-  },
-  { timestamps: false });
+  const Aluno = sequelize.define(
+    "Aluno",
+    {
+      nome: DataTypes.STRING,
+      responsavel: DataTypes.STRING,
+      email: DataTypes.STRING,
+      celular: DataTypes.STRING,
+      obs: DataTypes.TEXT,
+      turmaId: DataTypes.INTEGER,
+    },
+    { timestamps: false }
+  );
 
   Aluno.associate = (models) => {
-    Aluno.belongsTo(models.Turma, { as: 'turma', foreignKey: 'turmaId' });
+    Aluno.belongsTo(models.Turma, { as: "turma", foreignKey: "turmaId" });
   };
 
   return Aluno;

@@ -15,11 +15,11 @@ module.exports = {
       diretorId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
         references: {
-          model: 'Diretores',
-          key: 'id',
+          model: "Diretores",
+          key: "id",
         },
       },
     });

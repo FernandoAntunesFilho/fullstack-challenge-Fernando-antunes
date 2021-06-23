@@ -1,4 +1,4 @@
-const alunoServices = require('../services/alunoServices');
+const alunoServices = require("../services/alunoServices");
 
 const getAlunosByTurma = async (req, res) => {
   const { turmaId } = req.body;
@@ -28,4 +28,4 @@ module.exports = {
   getAlunosByTurma,
   getAlunoById,
   getAlunosByTerm,
-}
+};

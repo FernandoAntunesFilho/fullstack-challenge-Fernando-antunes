@@ -14,7 +14,7 @@ module.exports = {
       },
       responsavel: {
         type: Sequelize.STRING,
-      },      
+      },
       email: {
         type: Sequelize.STRING,
       },
@@ -27,11 +27,11 @@ module.exports = {
       turmaId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
         references: {
-          model: 'Turmas',
-          key: 'id',
+          model: "Turmas",
+          key: "id",
         },
       },
     });

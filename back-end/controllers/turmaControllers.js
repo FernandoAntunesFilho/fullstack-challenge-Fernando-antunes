@@ -1,4 +1,4 @@
-const turmaServices = require('../services/turmaServices');
+const turmaServices = require("../services/turmaServices");
 
 const getTurmasByEscola = async (req, res) => {
   const { escolaId } = req.body;

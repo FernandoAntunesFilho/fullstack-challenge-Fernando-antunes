@@ -1,4 +1,4 @@
-const { Diretore, Escola } = require('../models');
+const { Diretore, Escola } = require("../models");
 
 const diretorIdIsValid = async (diretorId) => {
   const diretor = await Diretore.findByPk(diretorId);

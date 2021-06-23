@@ -18,21 +18,21 @@ module.exports = {
       professorId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
         references: {
-          model: 'Professores',
-          key: 'id',
+          model: "Professores",
+          key: "id",
         },
       },
       escolaId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
         references: {
-          model: 'Escolas',
-          key: 'id',
+          model: "Escolas",
+          key: "id",
         },
       },
     });

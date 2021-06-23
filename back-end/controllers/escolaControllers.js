@@ -1,4 +1,4 @@
-const escolaServices = require('../services/escolaServices');
+const escolaServices = require("../services/escolaServices");
 
 const getEscolas = async (req, res) => {
   const result = await escolaServices.getEscolas();
@@ -30,11 +30,11 @@ const deleteEscola = async (req, res) => {
     return res.status(result.code).json({ message: result.message });
   }
   res.status(204).json();
-}
+};
 
 module.exports = {
   getEscolas,
   addEscola,
   editEscola,
   deleteEscola,
-}
+};
